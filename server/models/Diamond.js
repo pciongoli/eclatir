@@ -1,3 +1,5 @@
+// server/models/Diamonds.js
+
 const mongoose = require("mongoose");
 
 const DiamondSchema = new mongoose.Schema({

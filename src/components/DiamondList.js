@@ -1,5 +1,7 @@
+// src/components/DiamondList.js
 import React, { useEffect, useReducer } from "react";
 import "../styles/DiamondList.css";
+import { Link } from "react-router-dom";
 
 const initialState = {
    diamonds: [],
@@ -45,17 +47,12 @@ const DiamondList = ({ categoryFilter }) => {
       fetchDiamonds();
    }, []);
 
-   const filterDiamonds = (category) => {
-      if (!category) {
-         return state.diamonds;
-      }
-      return state.diamonds.filter((diamond) => diamond.category === category);
-   };
-
-   const filteredDiamonds = filterDiamonds(categoryFilter);
+   const filteredDiamonds = state.diamonds.filter(
+      (diamond) => !categoryFilter || diamond.category === categoryFilter
+   );
 
    return (
-      <div>
+      <div className="diamond-list">
          {state.isLoading ? (
             <p>Loading...</p>
          ) : state.error ? (
@@ -63,11 +60,19 @@ const DiamondList = ({ categoryFilter }) => {
          ) : (
             <ul>
                {filteredDiamonds.map((diamond) => (
-                  <li key={diamond._id}>
-                     {diamond.category} - {diamond.type} - {diamond.carat}{" "}
-                     carats - {diamond.cut} cut - {diamond.color} color -{" "}
-                     {diamond.clarity} clarity - ${diamond.price} -{" "}
-                     <img src={diamond.image} alt={`${diamond.type} diamond`} />
+                  <li key={diamond._id} className="diamond-item">
+                     <Link to={`/diamond/${diamond._id}`}>
+                        <img
+                           src={diamond.image}
+                           alt={`${diamond.type} diamond`}
+                        />
+                        <h4>{diamond.type}</h4>
+                     </Link>
+                     <p>
+                        {diamond.carat} carats - {diamond.cut} cut -{" "}
+                        {diamond.color} color - {diamond.clarity} clarity - $
+                        {diamond.price}
+                     </p>
                   </li>
                ))}
             </ul>

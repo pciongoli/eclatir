@@ -1,10 +1,14 @@
+// src/components/Navbar.js
 import React from "react";
 import "../styles/Navbar.css";
+import { Link } from "react-router-dom";
 
 const Navbar = ({ setCategoryFilter }) => {
    return (
       <nav>
-         <div className="title">Eclatir</div>
+         <Link to="/" className="title">
+            Eclatir
+         </Link>
          <div className="buttons">
             <div className="category-buttons">
                <button onClick={() => setCategoryFilter("Lab Diamond")}>

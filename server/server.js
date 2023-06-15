@@ -6,6 +6,8 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
+// server/server.js
+
 // Connect to MongoDB
 mongoose.connect("mongodb://localhost/diamond-store", {
    useNewUrlParser: true,
