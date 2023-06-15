@@ -1,41 +1,22 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import "../styles/HomePage.css";
 
-function HomePage() {
-   const [diamonds, setDiamonds] = useState([]);
-
-   useEffect(() => {
-      const fetchDiamonds = async () => {
-         try {
-            const response = await axios.get("/api/diamonds");
-            setDiamonds(response.data);
-         } catch (error) {
-            console.error("Error fetching diamonds:", error);
-         }
-      };
-
-      fetchDiamonds();
-   }, []);
-
+const HomePage = () => {
    return (
-      <div>
-         <h1>Eclatir Diamonds</h1>
-         <ul>
-            {diamonds.map((diamond) => (
-               <li key={diamond._id}>
-                  <img
-                     src={diamond.imageUrl}
-                     alt={diamond.name}
-                     style={{ width: "100px" }}
-                  />
-                  <h3>{diamond.name}</h3>
-                  <p>{diamond.description}</p>
-                  <p>${diamond.price}</p>
-               </li>
-            ))}
-         </ul>
+      <div className="jumbotron">
+         <div className="carousel">
+            <div className="carousel-item">
+               <img src="https://example.com/image1.jpg" alt="First slide" />
+            </div>
+            <div className="carousel-item">
+               <img src="https://example.com/image2.jpg" alt="Second slide" />
+            </div>
+            <div className="carousel-item">
+               <img src="https://example.com/image3.jpg" alt="Third slide" />
+            </div>
+         </div>
       </div>
    );
-}
+};
 
 export default HomePage;
