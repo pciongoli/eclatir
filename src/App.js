@@ -7,6 +7,10 @@ import Navbar from "./components/Navbar";
 import HomePage from "./components/HomePage";
 import RegisterForm from "./components/RegisterForm";
 import LoginForm from "./components/LoginForm";
+import Rings from "./components/Rings";
+import Necklaces from "./components/Necklaces";
+import Bracelets from "./components/Bracelets";
+import Earrings from "./components/Earrings";
 import { AuthProvider } from "./AuthContext";
 
 function App() {
@@ -25,6 +29,10 @@ function App() {
                   />
                   <Route path="/register" element={<RegisterForm />} />
                   <Route path="/login" element={<LoginForm />} />
+                  <Route path="/rings" element={<Rings />} />
+                  <Route path="/necklaces" element={<Necklaces />} />
+                  <Route path="/bracelets" element={<Bracelets />} />
+                  <Route path="/earrings" element={<Earrings />} />
                </Routes>
             </Layout>
          </Router>

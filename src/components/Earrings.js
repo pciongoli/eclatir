@@ -1,10 +1,8 @@
 import React, { useEffect, useReducer } from "react";
-import "../styles/DiamondList.css";
-import "../styles/ProductList.css";
 import { Link } from "react-router-dom";
 
 const initialState = {
-   diamonds: [],
+   earrings: [],
    isLoading: true,
    error: null,
 };
@@ -15,7 +13,7 @@ const reducer = (state, action) => {
          return {
             ...state,
             isLoading: false,
-            diamonds: action.payload,
+            earrings: action.payload,
          };
       case "FETCH_ERROR":
          return {
@@ -28,13 +26,13 @@ const reducer = (state, action) => {
    }
 };
 
-const DiamondList = ({ categoryFilter }) => {
+const Earrings = ({ categoryFilter }) => {
    const [state, dispatch] = useReducer(reducer, initialState);
 
    useEffect(() => {
-      const fetchDiamonds = async () => {
+      const fetchEarrings = async () => {
          try {
-            const response = await fetch("/api/diamonds");
+            const response = await fetch("/api/earrings");
             if (!response.ok) {
                throw new Error("Network response was not ok");
             }
@@ -44,11 +42,11 @@ const DiamondList = ({ categoryFilter }) => {
             dispatch({ type: "FETCH_ERROR", payload: error.message });
          }
       };
-      fetchDiamonds();
+      fetchEarrings();
    }, []);
 
-   const filteredDiamonds = state.diamonds.filter(
-      (diamond) => !categoryFilter || diamond.category === categoryFilter
+   const filteredEarrings = state.earrings.filter(
+      (earring) => !categoryFilter || earring.category === categoryFilter
    );
 
    return (
@@ -58,17 +56,13 @@ const DiamondList = ({ categoryFilter }) => {
          ) : state.error ? (
             <p>Error: {state.error}</p>
          ) : (
-            filteredDiamonds.map((diamond) => (
-               <li key={diamond.id} className="product-item">
-                  <Link to={`/diamond/${diamond._id}`}>
-                     <img src={diamond.image} alt={`${diamond.type} diamond`} />
-                     <h4>{diamond.type}</h4>
+            filteredEarrings.map((earring) => (
+               <li key={earring._id} className="product-item">
+                  <Link to={`/earrings/${earring._id}`}>
+                     <img src={earring.image} alt={earring.name} />
+                     <p>{earring.name}</p>
+                     <p>${earring.price}</p>
                   </Link>
-                  <p>
-                     {diamond.carat} carats - {diamond.cut} cut -{" "}
-                     {diamond.color} color - {diamond.clarity} clarity - $
-                     {diamond.price}
-                  </p>
                </li>
             ))
          )}
@@ -76,4 +70,4 @@ const DiamondList = ({ categoryFilter }) => {
    );
 };
 
-export default DiamondList;
+export default Earrings;

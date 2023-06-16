@@ -2,6 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Diamond = require("./models/Diamond");
 const User = require("./models/User");
+const Ring = require("./models/Ring");
+const Necklace = require("./models/Necklace");
+const Bracelet = require("./models/Bracelet");
+const Earring = require("./models/Earring");
 
 const cors = require("cors");
 
@@ -76,5 +80,33 @@ app.post("/api/login", async (req, res) => {
    });
 });
 
-// Listen on port 5000
+// Get all rings
+app.get("/api/rings", async (req, res) => {
+   try {
+      const rings = await Ring.find();
+      res.status(200).send(rings);
+   } catch (error) {
+      res.status(500).send({ message: "Error fetching rings" });
+   }
+});
+
+// Get all necklaces
+app.get("/api/necklaces", async (req, res) => {
+   const necklaces = await Necklace.find();
+   res.json(necklaces);
+});
+
+// Get all bracelets
+app.get("/api/bracelets", async (req, res) => {
+   const bracelets = await Bracelet.find();
+   res.json(bracelets);
+});
+
+// Get all earrings
+app.get("/api/earrings", async (req, res) => {
+   const earrings = await Earring.find();
+   res.json(earrings);
+});
+
+// Listen on port 6000
 app.listen(6000, () => console.log("Server running on port 6000"));

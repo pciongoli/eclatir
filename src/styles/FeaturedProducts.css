@@ -1,0 +1,18 @@
+.featured-products {
+   display: flex;
+   justify-content: space-between;
+   padding: 50px;
+   background-color: #f9f9f9;
+}
+
+.featured-info {
+   flex: 1;
+   padding: 20px;
+}
+
+.product-slider {
+   flex: 2;
+   padding: 20px;
+   background-color: #ffffff;
+   border: 1px solid #ddd;
+}

@@ -67,6 +67,21 @@ const Navbar = ({ setCategoryFilter }) => {
                      </div>
                   )}
                </div>
+               <Link to="/rings">
+                  <button>Rings</button>
+               </Link>
+               <Link to="/necklaces">
+                  <button>Necklaces</button>
+               </Link>
+               <Link to="/bracelets">
+                  <button>Bracelets</button>
+               </Link>
+               <Link to="/earrings">
+                  <button>Earrings</button>
+               </Link>
+               <Link to="/specials">
+                  <button>Specials</button>
+               </Link>
             </div>
          </div>
       </nav>

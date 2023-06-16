@@ -3,20 +3,14 @@
 import React from "react";
 import "../styles/HomePage.css";
 
+import Jumbotron from "./Jumbotron";
+import FeaturedProducts from "../components/FeaturedProducts";
+
 const HomePage = () => {
    return (
-      <div className="jumbotron">
-         <div className="carousel">
-            <div className="carousel-item">
-               <img src="https://example.com/image1.jpg" alt="First slide" />
-            </div>
-            <div className="carousel-item">
-               <img src="https://example.com/image2.jpg" alt="Second slide" />
-            </div>
-            <div className="carousel-item">
-               <img src="https://example.com/image3.jpg" alt="Third slide" />
-            </div>
-         </div>
+      <div>
+         <Jumbotron />
+         <FeaturedProducts />
       </div>
    );
 };

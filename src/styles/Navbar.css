@@ -33,13 +33,17 @@ nav {
 .auth-buttons {
    position: absolute;
    right: 20px;
-   transform: translateY(-50%);
    margin-right: 20px;
 }
 
 .category-buttons {
-   text-align: center;
+   display: flex;
+   justify-content: center;
    margin-top: 10px;
+}
+
+.category-buttons button {
+   margin: 0 10px;
 }
 
 .dropdown {
@@ -50,6 +54,7 @@ nav {
 .dropdown-content {
    display: none;
    position: absolute;
+   right: 0;
    background-color: #f9f9f9;
    min-width: 160px;
    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
