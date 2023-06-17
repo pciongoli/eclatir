@@ -1,12 +1,17 @@
-// src/components/Navbar.js
 import React, { useState } from "react";
 import "../styles/Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 
-const Navbar = ({ setCategoryFilter }) => {
+const Navbar = () => {
    const [showDropdown, setShowDropdown] = useState(false);
    const { isAuthenticated } = useAuth(); // get the isAuthenticated from context
+   const navigate = useNavigate();
+
+   const handleButtonClick = (category) => {
+      navigate("/diamonds", { state: { category } });
+      setShowDropdown(false);
+   };
 
    return (
       <nav>
@@ -46,24 +51,19 @@ const Navbar = ({ setCategoryFilter }) => {
                   </button>
                   {showDropdown && (
                      <div className="dropdown-content">
-                        <Link
-                           to="/diamonds"
-                           onClick={() => setCategoryFilter(null)}
-                        >
+                        <button onClick={() => handleButtonClick(null)}>
                            All Diamonds
-                        </Link>
-                        <Link
-                           to="/diamonds"
-                           onClick={() => setCategoryFilter("Lab Diamond")}
+                        </button>
+                        <button
+                           onClick={() => handleButtonClick("Lab Diamond")}
                         >
                            Lab Diamonds
-                        </Link>
-                        <Link
-                           to="/diamonds"
-                           onClick={() => setCategoryFilter("Natural Diamond")}
+                        </button>
+                        <button
+                           onClick={() => handleButtonClick("Natural Diamond")}
                         >
                            Natural Diamonds
-                        </Link>
+                        </button>
                      </div>
                   )}
                </div>

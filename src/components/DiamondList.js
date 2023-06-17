@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer } from "react";
+import { useLocation, Link } from "react-router-dom";
 import "../styles/DiamondList.css";
 import "../styles/ProductList.css";
-import { Link } from "react-router-dom";
 
 const initialState = {
    diamonds: [],
@@ -28,8 +28,10 @@ const reducer = (state, action) => {
    }
 };
 
-const DiamondList = ({ categoryFilter }) => {
+const DiamondList = () => {
    const [state, dispatch] = useReducer(reducer, initialState);
+   const location = useLocation();
+   const categoryFilter = location.state?.category;
 
    useEffect(() => {
       const fetchDiamonds = async () => {
