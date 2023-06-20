@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom"; // Change useHistory to useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
+import "../styles/LoginForm.css";
 
 const LoginForm = () => {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const { signIn } = useAuth();
-   const navigate = useNavigate(); // Change here
+   const navigate = useNavigate();
 
    const handleSubmit = async (e) => {
       e.preventDefault();
@@ -19,7 +20,7 @@ const LoginForm = () => {
          if (response.data.message === "Logged in") {
             alert("Logged in Successfully");
             signIn();
-            navigate("/"); // Change here
+            navigate("/");
          } else {
             alert("Invalid credentials");
          }
@@ -29,7 +30,7 @@ const LoginForm = () => {
    };
 
    return (
-      <div>
+      <div className="login-form">
          <form onSubmit={handleSubmit}>
             <input
                type="text"

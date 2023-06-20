@@ -6,6 +6,7 @@ const Ring = require("./models/Ring");
 const Necklace = require("./models/Necklace");
 const Bracelet = require("./models/Bracelet");
 const Earring = require("./models/Earring");
+const FeaturedProduct = require("./models/FeaturedProduct");
 
 const cors = require("cors");
 
@@ -106,6 +107,16 @@ app.get("/api/bracelets", async (req, res) => {
 app.get("/api/earrings", async (req, res) => {
    const earrings = await Earring.find();
    res.json(earrings);
+});
+
+// Get all specials
+app.get("/api/specials", async (req, res) => {
+   try {
+      const featuredProducts = await FeaturedProduct.find();
+      res.status(200).send(featuredProducts);
+   } catch (error) {
+      res.status(500).send({ message: "Error fetching featured products" });
+   }
 });
 
 // Listen on port 6000

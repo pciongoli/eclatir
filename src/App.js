@@ -11,6 +11,8 @@ import Rings from "./components/Rings";
 import Necklaces from "./components/Necklaces";
 import Bracelets from "./components/Bracelets";
 import Earrings from "./components/Earrings";
+import Specials from "./components/SpecialsPage";
+import Account from "./components/Account";
 import { AuthProvider } from "./AuthContext";
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
                   <Route path="/necklaces" element={<Necklaces />} />
                   <Route path="/bracelets" element={<Bracelets />} />
                   <Route path="/earrings" element={<Earrings />} />
+                  <Route path="/specials" element={<Specials />} />
+                  <Route path="/account" element={<Account />} />
                </Routes>
             </Layout>
          </Router>

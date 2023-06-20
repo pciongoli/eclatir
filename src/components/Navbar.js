@@ -22,19 +22,11 @@ const Navbar = () => {
                </Link>
                <div className="auth-buttons">
                   {isAuthenticated ? (
-                     <div className="dropdown">
-                        <img src="profile_icon_url" alt="Profile" />{" "}
-                        {/* Assuming you have profile icon URL */}
-                        <div className="dropdown-content">
-                           <a href="/profile">Profile</a>
-                           <a href="/logout">Logout</a>
-                        </div>
-                     </div>
+                     <Link to="/account">
+                        <button>Account</button>
+                     </Link>
                   ) : (
                      <>
-                        <Link to="/login">
-                           <button>Sign In</button>
-                        </Link>
                         <Link to="/register">
                            <button>Sign Up</button>
                         </Link>
