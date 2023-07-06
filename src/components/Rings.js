@@ -59,7 +59,7 @@ const Rings = ({ categoryFilter }) => {
          ) : (
             filteredRings.map((ring) => (
                <li key={ring._id} className="product-item">
-                  <Link to={`/rings/${ring._id}`}>
+                  <Link to={`/product/rings/${ring._id}`}>
                      <img src={ring.image} alt={ring.name} />
                      <p>{ring.name}</p>
                      <p>${ring.price}</p>

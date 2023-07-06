@@ -1,3 +1,4 @@
+// server/server.js
 const express = require("express");
 const mongoose = require("mongoose");
 const Diamond = require("./models/Diamond");
@@ -13,8 +14,6 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 
-// server/server.js
-
 // Connect to MongoDB
 mongoose.connect("mongodb://localhost/diamond-store", {
    useNewUrlParser: true,
@@ -27,23 +26,6 @@ app.use(express.json());
 // Define routes
 app.get("/", (req, res) => {
    res.send("Welcome to the Diamond Store API");
-});
-
-// Fetch all diamonds
-app.get("/api/diamonds", async (req, res) => {
-   try {
-      const diamonds = await Diamond.find();
-      res.status(200).send(diamonds);
-   } catch (error) {
-      res.status(500).send({ message: "Error fetching diamonds" });
-   }
-});
-
-app.post("/api/diamonds", async (req, res) => {
-   const { name, carat, price } = req.body;
-   const diamond = new Diamond({ name, carat, price });
-   await diamond.save();
-   res.status(201).send(diamond);
 });
 
 // Register
@@ -81,6 +63,34 @@ app.post("/api/login", async (req, res) => {
    });
 });
 
+// Fetch all diamonds
+app.get("/api/diamonds", async (req, res) => {
+   try {
+      const diamonds = await Diamond.find();
+      res.status(200).send(diamonds);
+   } catch (error) {
+      res.status(500).send({ message: "Error fetching diamonds" });
+   }
+});
+
+app.post("/api/diamonds", async (req, res) => {
+   const { name, carat, price } = req.body;
+   const diamond = new Diamond({ name, carat, price });
+   await diamond.save();
+   res.status(201).send(diamond);
+});
+
+// Fetch diamonds by shape
+app.get("/api/diamonds/shape/:shape", async (req, res) => {
+   try {
+      const shape = req.params.shape;
+      const diamonds = await Diamond.find({ type: shape });
+      res.status(200).send(diamonds);
+   } catch (error) {
+      res.status(500).send({ message: "Error fetching diamonds by shape" });
+   }
+});
+
 // Get all rings
 app.get("/api/rings", async (req, res) => {
    try {
@@ -116,6 +126,42 @@ app.get("/api/specials", async (req, res) => {
       res.status(200).send(featuredProducts);
    } catch (error) {
       res.status(500).send({ message: "Error fetching featured products" });
+   }
+});
+
+// get an individual product
+app.get("/api/:category/:productId", async (req, res) => {
+   const { category, productId } = req.params;
+   let model;
+
+   switch (category) {
+      case "diamonds":
+         model = Diamond; // Add this case to handle diamonds
+         break;
+      case "rings":
+         model = Ring;
+         break;
+      case "necklaces":
+         model = Necklace;
+         break;
+      case "bracelets":
+         model = Bracelet;
+         break;
+      case "earrings":
+         model = Earring;
+         break;
+      default:
+         return res.status(404).send({ message: "Category not found" });
+   }
+
+   try {
+      const product = await model.findById(productId);
+      if (!product) {
+         return res.status(404).send({ message: "Product not found" });
+      }
+      res.status(200).send(product);
+   } catch (error) {
+      res.status(500).send({ message: "Error fetching product" });
    }
 });
 

@@ -1,0 +1,48 @@
+/* DiamondShapeFilter.css */
+
+.diamond-shape-filter {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: center;
+   padding: 20px;
+   margin-top: 30px;
+   margin-bottom: 30px;
+}
+
+.catchy-phrase {
+   width: 100%;
+   font-size: 1.5em;
+   text-align: center;
+   padding: 20px;
+   margin-bottom: 20px;
+   color: #333;
+   font-weight: bold;
+}
+
+.diamond-shape-item {
+   background-color: #f9f9f9;
+   border: 1px solid #ddd;
+   border-radius: 10px;
+   padding: 10px;
+   margin: 10px;
+   text-align: center;
+   cursor: pointer;
+   transition: all 0.3s ease-in-out;
+}
+
+.diamond-shape-item img {
+   max-width: 80px;
+   height: auto;
+   margin-bottom: 10px;
+}
+
+.diamond-shape-item p {
+   margin: 0;
+   font-weight: bold;
+}
+
+.diamond-shape-item:hover {
+   background-color: #f0f0f0;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+   transform: scale(1.05);
+}

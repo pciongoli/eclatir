@@ -13,6 +13,7 @@ import Bracelets from "./components/Bracelets";
 import Earrings from "./components/Earrings";
 import Specials from "./components/SpecialsPage";
 import Account from "./components/Account";
+import ProductPage from "./components/ProductPage";
 import { AuthProvider } from "./AuthContext";
 
 function App() {
@@ -29,6 +30,10 @@ function App() {
                      path="/diamonds"
                      element={<DiamondList categoryFilter={categoryFilter} />}
                   />
+                  <Route
+                     path="/diamonds/shape/:shape"
+                     element={<DiamondList categoryFilter={categoryFilter} />}
+                  />
                   <Route path="/register" element={<RegisterForm />} />
                   <Route path="/login" element={<LoginForm />} />
                   <Route path="/rings" element={<Rings />} />
@@ -37,6 +42,11 @@ function App() {
                   <Route path="/earrings" element={<Earrings />} />
                   <Route path="/specials" element={<Specials />} />
                   <Route path="/account" element={<Account />} />
+
+                  <Route
+                     path="/product/:category/:productId"
+                     element={<ProductPage />}
+                  />
                </Routes>
             </Layout>
          </Router>

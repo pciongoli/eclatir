@@ -55,9 +55,9 @@ const Specials = () => {
          ) : (
             state.featuredProducts.map((product) => (
                <li key={product._id} className="product-item">
-                  <Link to={`/specials/${product._id}`}>
-                     <img src={product.image} alt={product.type} />
-                     <p>{product.type}</p>
+                  <Link to={`/product/specials/${product._id}`}>
+                     <img src={product.image} alt={product.name} />
+                     <p>{product.name}</p>
                      <p>${product.price}</p>
                   </Link>
                </li>

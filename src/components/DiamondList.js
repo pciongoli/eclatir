@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, useParams, Link } from "react-router-dom";
 import "../styles/DiamondList.css";
 import "../styles/ProductList.css";
 
@@ -31,24 +31,32 @@ const reducer = (state, action) => {
 const DiamondList = () => {
    const [state, dispatch] = useReducer(reducer, initialState);
    const location = useLocation();
-   const categoryFilter = location.state?.category;
+   const { shape } = useParams(); // Get the shape from the route params
 
    useEffect(() => {
       const fetchDiamonds = async () => {
          try {
-            const response = await fetch("/api/diamonds");
+            let apiUrl = "/api/diamonds";
+            if (shape) {
+               apiUrl = `/api/diamonds/shape/${shape}`; // Use the shape in the URL if it is provided
+            }
+            const response = await fetch(apiUrl);
+
             if (!response.ok) {
                throw new Error("Network response was not ok");
             }
+
             const data = await response.json();
             dispatch({ type: "FETCH_SUCCESS", payload: data });
          } catch (error) {
             dispatch({ type: "FETCH_ERROR", payload: error.message });
          }
       };
-      fetchDiamonds();
-   }, []);
 
+      fetchDiamonds();
+   }, [shape]);
+
+   const categoryFilter = location.state?.category;
    const filteredDiamonds = state.diamonds.filter(
       (diamond) => !categoryFilter || diamond.category === categoryFilter
    );
@@ -61,8 +69,8 @@ const DiamondList = () => {
             <p>Error: {state.error}</p>
          ) : (
             filteredDiamonds.map((diamond) => (
-               <li key={diamond.id} className="product-item">
-                  <Link to={`/diamond/${diamond._id}`}>
+               <li key={diamond._id} className="product-item">
+                  <Link to={`/product/diamonds/${diamond._id}`}>
                      <img src={diamond.image} alt={`${diamond.type} diamond`} />
                      <h4>{diamond.type}</h4>
                   </Link>

@@ -58,7 +58,7 @@ const Necklaces = ({ categoryFilter }) => {
          ) : (
             filteredNecklaces.map((necklace) => (
                <li key={necklace._id} className="product-item">
-                  <Link to={`/necklaces/${necklace._id}`}>
+                  <Link to={`/product/necklaces/${necklace._id}`}>
                      <img src={necklace.image} alt={necklace.name} />
                      <p>{necklace.name}</p>
                      <p>${necklace.price}</p>
