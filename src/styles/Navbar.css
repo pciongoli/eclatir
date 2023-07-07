@@ -1,5 +1,5 @@
 nav {
-   background-color: #3d405b;
+   background-color: #3d3e5b;
    color: white;
    display: flex;
    flex-direction: column;
@@ -44,7 +44,7 @@ nav {
 
 .category-buttons button {
    margin: 0 10px;
-   background-color: #81b29a;
+   background-color: #818ab2;
    border: none;
    color: #f4f1de;
    padding: 10px 20px;

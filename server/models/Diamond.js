@@ -3,11 +3,6 @@
 const mongoose = require("mongoose");
 
 const DiamondSchema = new mongoose.Schema({
-   category: {
-      type: String,
-      enum: ["Lab Diamond", "Natural Diamond"],
-      required: true,
-   },
    type: {
       type: String,
       required: true,

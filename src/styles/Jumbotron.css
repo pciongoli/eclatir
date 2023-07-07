@@ -1,5 +1,5 @@
 .jumbotron {
-   background-color: #81b29a;
+   background-color: #818ab2;
    padding: 50px;
    text-align: center;
    margin-bottom: 30px;
@@ -22,7 +22,7 @@
 }
 
 .jumbotron .buttons button {
-   background-color: #e07a5f; /* Rust color */
+   background-color: #e05f8c; /* Rust color */
    border: none;
    color: #fff;
    padding: 15px 32px;

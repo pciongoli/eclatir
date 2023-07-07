@@ -1,11 +1,13 @@
-// componenets/Layout.js
-
+// components/Layout.js
 import React from "react";
+import Footer from "./Footer";
+import "../styles/Layout.css";
 
 const Layout = ({ children }) => {
    return (
-      <div>
-         <main>{children}</main>
+      <div className="layout-container">
+         <main className="layout-content">{children}</main>
+         <Footer />
       </div>
    );
 };

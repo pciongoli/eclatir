@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 
 const Navbar = () => {
-   const [showDropdown, setShowDropdown] = useState(false);
-   const { isAuthenticated } = useAuth(); // get the isAuthenticated from context
+   const { isAuthenticated } = useAuth();
    const navigate = useNavigate();
-
-   const handleButtonClick = (category) => {
-      navigate("/diamonds", { state: { category } });
-      setShowDropdown(false);
-   };
 
    return (
       <nav>
@@ -26,39 +20,18 @@ const Navbar = () => {
                         <button>Account</button>
                      </Link>
                   ) : (
-                     <>
-                        <Link to="/register">
-                           <button>Sign Up</button>
-                        </Link>
-                     </>
+                     <Link to="/register">
+                        <button>Sign Up</button>
+                     </Link>
                   )}
                </div>
             </div>
          </div>
          <div className="buttons">
             <div className="category-buttons">
-               <div className="dropdown">
-                  <button onClick={() => setShowDropdown(!showDropdown)}>
-                     Diamonds
-                  </button>
-                  {showDropdown && (
-                     <div className="dropdown-content">
-                        <button onClick={() => handleButtonClick(null)}>
-                           All Diamonds
-                        </button>
-                        <button
-                           onClick={() => handleButtonClick("Lab Diamond")}
-                        >
-                           Lab Diamonds
-                        </button>
-                        <button
-                           onClick={() => handleButtonClick("Natural Diamond")}
-                        >
-                           Natural Diamonds
-                        </button>
-                     </div>
-                  )}
-               </div>
+               <Link to="/diamonds">
+                  <button>Diamonds</button>
+               </Link>
                <Link to="/rings">
                   <button>Rings</button>
                </Link>

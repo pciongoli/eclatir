@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import { useLocation, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "../styles/DiamondList.css";
 import "../styles/ProductList.css";
 
@@ -30,15 +30,14 @@ const reducer = (state, action) => {
 
 const DiamondList = () => {
    const [state, dispatch] = useReducer(reducer, initialState);
-   const location = useLocation();
-   const { shape } = useParams(); // Get the shape from the route params
+   const { shape } = useParams();
 
    useEffect(() => {
       const fetchDiamonds = async () => {
          try {
             let apiUrl = "/api/diamonds";
             if (shape) {
-               apiUrl = `/api/diamonds/shape/${shape}`; // Use the shape in the URL if it is provided
+               apiUrl = `/api/diamonds/shape/${shape}`;
             }
             const response = await fetch(apiUrl);
 
@@ -56,11 +55,6 @@ const DiamondList = () => {
       fetchDiamonds();
    }, [shape]);
 
-   const categoryFilter = location.state?.category;
-   const filteredDiamonds = state.diamonds.filter(
-      (diamond) => !categoryFilter || diamond.category === categoryFilter
-   );
-
    return (
       <ul className="product-list">
          {state.isLoading ? (
@@ -68,7 +62,7 @@ const DiamondList = () => {
          ) : state.error ? (
             <p>Error: {state.error}</p>
          ) : (
-            filteredDiamonds.map((diamond) => (
+            state.diamonds.map((diamond) => (
                <li key={diamond._id} className="product-item">
                   <Link to={`/product/diamonds/${diamond._id}`}>
                      <img src={diamond.image} alt={`${diamond.type} diamond`} />

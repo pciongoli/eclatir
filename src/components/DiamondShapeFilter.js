@@ -1,11 +1,12 @@
 // components/DiamondShapeFilter.js
 
-import React from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/DiamondShapeFilter.css";
 
 const DiamondShapeFilter = () => {
    const navigate = useNavigate();
+   const scrollRef = useRef();
    const diamondShapes = [
       {
          name: "Round",
@@ -53,24 +54,39 @@ const DiamondShapeFilter = () => {
       navigate(`/diamonds/shape/${shape}`);
    };
 
+   const scroll = (scrollOffset) => {
+      scrollRef.current.scrollBy({
+         left: scrollOffset,
+         behavior: "smooth",
+      });
+   };
+
    return (
       <div className="diamond-shape-filter">
          <div className="catchy-phrase">
             Sparkle With Your Perfect Shape! 💎 Click and Find Your Gem!
          </div>
-         {diamondShapes.map((shape, index) => (
-            <div
-               key={index}
-               className="diamond-shape-item"
-               onClick={() => handleShapeClick(shape.name)}
-            >
-               <img
-                  src="https://assets.codepen.io/7125791/diamond-1199183_1280.jpg"
-                  alt={shape.name}
-               />
-               <p>{shape.name}</p>
-            </div>
-         ))}
+         <div className="diamond-shape-container" ref={scrollRef}>
+            {diamondShapes.map((shape, index) => (
+               <div
+                  key={index}
+                  className="diamond-shape-item"
+                  onClick={() => handleShapeClick(shape.name)}
+               >
+                  <img
+                     src="https://assets.codepen.io/7125791/diamond-1199183_1280.jpg"
+                     alt={shape.name}
+                  />
+                  <p>{shape.name}</p>
+               </div>
+            ))}
+         </div>
+         <button className="scroll-button left" onClick={() => scroll(-200)}>
+            &lt;
+         </button>
+         <button className="scroll-button right" onClick={() => scroll(200)}>
+            &gt;
+         </button>
       </div>
    );
 };

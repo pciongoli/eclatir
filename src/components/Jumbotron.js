@@ -1,3 +1,5 @@
+// Jumbotron.js
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Jumbotron.css";
@@ -5,8 +7,8 @@ import "../styles/Jumbotron.css";
 const Jumbotron = () => {
    const navigate = useNavigate();
 
-   const handleButtonClick = (category) => {
-      navigate("/diamonds", { state: { category } });
+   const handleButtonClick = () => {
+      navigate("/diamonds");
    };
 
    return (
@@ -15,15 +17,12 @@ const Jumbotron = () => {
          <p>
             Discover the perfect diamond at Eclatir. Our diamonds are crafted
             with precision and care, ensuring the highest quality and
-            brilliance. Choose from Lab Diamonds for environmentally sustainable
-            choice or Natural Diamonds for the traditional exquisite gemstones.
+            brilliance. Choose lab diamonds for an environmentally sustainable
+            choice.
          </p>
          <div className="buttons">
-            <button onClick={() => handleButtonClick("Lab Diamond")}>
+            <button onClick={() => handleButtonClick()}>
                Shop Lab Diamonds
-            </button>
-            <button onClick={() => handleButtonClick("Natural Diamond")}>
-               Shop Natural Diamonds
             </button>
          </div>
       </div>
