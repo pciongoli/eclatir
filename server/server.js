@@ -63,10 +63,31 @@ app.post("/api/login", async (req, res) => {
    });
 });
 
-// Fetch all diamonds
+// Fetch all diamonds with optional filters
 app.get("/api/diamonds", async (req, res) => {
    try {
-      const diamonds = await Diamond.find();
+      const {
+         type,
+         minCarat,
+         maxCarat,
+         cut,
+         color,
+         clarity,
+         minPrice,
+         maxPrice,
+      } = req.query;
+
+      const filters = {};
+      if (type) filters.type = type;
+      if (minCarat) filters.carat = { $gte: minCarat };
+      if (maxCarat) filters.carat = { ...filters.carat, $lte: maxCarat };
+      if (cut) filters.cut = cut;
+      if (color) filters.color = color;
+      if (clarity) filters.clarity = clarity;
+      if (minPrice) filters.price = { $gte: minPrice };
+      if (maxPrice) filters.price = { ...filters.price, $lte: maxPrice };
+
+      const diamonds = await Diamond.find(filters);
       res.status(200).send(diamonds);
    } catch (error) {
       res.status(500).send({ message: "Error fetching diamonds" });
