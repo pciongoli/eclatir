@@ -1,6 +1,9 @@
 /* DiamondCustomizer.css */
 
 .diamond-customizer {
+   background-color: #fafafa;
+   border-radius: 15px;
+   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
    padding: 20px;
    max-width: 800px;
    margin: 0 auto;
@@ -22,17 +25,30 @@
 
 /* Make filter labels look clickable */
 .filter-btn {
-   background-color: #f4f4f4;
+   background-color: #ffffff;
    padding: 10px;
    border: 1px solid #ddd;
    border-radius: 4px;
    cursor: pointer;
    position: relative;
    min-width: 150px;
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+   transition: 0.2s;
 }
 
 .filter-btn:hover {
-   background-color: #e9e9e9;
+   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+   transition: 0.2s;
+}
+
+.filter-btn.active {
+   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+   transition: 0.2s;
+}
+.filter-options {
+   background-color: #ffffff;
+   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+   transition: 0.2s;
 }
 
 .filter-btn select,
@@ -56,6 +72,12 @@
 .filter-btn.active div {
    max-height: 300px;
    transition: max-height 0.25s ease-in;
+}
+
+.type-icon {
+   height: 20px;
+   width: 20px;
+   margin-right: 5px;
 }
 
 /* Style for the cuts container */

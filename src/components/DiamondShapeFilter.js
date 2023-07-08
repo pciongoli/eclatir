@@ -1,5 +1,3 @@
-// components/DiamondShapeFilter.js
-
 import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/DiamondShapeFilter.css";
@@ -10,43 +8,43 @@ const DiamondShapeFilter = () => {
    const diamondShapes = [
       {
          name: "Round",
-         image: "path_to_round_image",
+         image: "https://assets.codepen.io/7125791/round-cut-diamond.jpeg",
       },
       {
          name: "Cushion",
-         image: "path_to_cushion_image",
+         image: "https://assets.codepen.io/7125791/cushion-cut-diamond.jpeg",
       },
       {
          name: "Princess",
-         image: "path_to_princess_image",
+         image: "https://assets.codepen.io/7125791/princess-cut-diamond.jpeg",
       },
       {
          name: "Emerald",
-         image: "path_to_emerald_image",
+         image: "https://assets.codepen.io/7125791/emerald-cut-diamond.jpeg",
       },
       {
          name: "Oval",
-         image: "path_to_oval_image",
+         image: "https://assets.codepen.io/7125791/oval-cut-diamond.jpeg",
       },
       {
-         name: "Asher",
-         image: "path_to_asher_image",
+         name: "Asscher",
+         image: "https://assets.codepen.io/7125791/asscher-cut-diamond.jpeg",
       },
       {
          name: "Radiant",
-         image: "path_to_radiant_image",
+         image: "https://assets.codepen.io/7125791/radiant-cut-diamond.jpeg",
       },
       {
          name: "Marquise",
-         image: "path_to_marquise_image",
+         image: "https://assets.codepen.io/7125791/marquise-cut-diamond.jpeg",
       },
       {
          name: "Pear",
-         image: "path_to_pear_image",
+         image: "https://assets.codepen.io/7125791/pear-cut-diamond.jpeg",
       },
       {
          name: "Heart",
-         image: "path_to_heart_image",
+         image: "https://assets.codepen.io/7125791/heart-cut-diamond.jpeg",
       },
    ];
 
@@ -73,10 +71,7 @@ const DiamondShapeFilter = () => {
                   className="diamond-shape-item"
                   onClick={() => handleShapeClick(shape.name)}
                >
-                  <img
-                     src="https://assets.codepen.io/7125791/diamond-1199183_1280.jpg"
-                     alt={shape.name}
-                  />
+                  <img src={shape.image} alt={shape.name} />
                   <p>{shape.name}</p>
                </div>
             ))}

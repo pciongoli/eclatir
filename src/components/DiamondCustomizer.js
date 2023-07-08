@@ -1,4 +1,14 @@
 import React, { useState, useReducer } from "react";
+import Round from "../images/Round.png";
+import Cushion from "../images/Cushion.png";
+import Princess from "../images/Princess.png";
+import Emerald from "../images/Emerald.png";
+import Oval from "../images/Oval.png";
+import Asscher from "../images/Asscher.png";
+import Radiant from "../images/Radiant.png";
+import Marquise from "../images/Marquise.png";
+import Pear from "../images/Pear.png";
+import Heart from "../images/Heart.png";
 import "../styles/DiamondCustomizer.css";
 
 const initialFilterState = {
@@ -28,7 +38,18 @@ const DiamondCustomizer = ({ onFilter }) => {
    const cuts = ["Excellent", "Very Good", "Good", "Fair", "Poor"];
    const colors = ["D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"];
    const clarities = ["IF", "VVS1", "VVS2", "VS1", "VS2", "SI1", "SI2", "I1"];
-   const types = ["Round", "Princess"];
+   const types = [
+      { name: "Round", img: Round },
+      { name: "Cushion", img: Cushion },
+      { name: "Princess", img: Princess },
+      { name: "Emerald", img: Emerald },
+      { name: "Oval", img: Oval },
+      { name: "Asscher", img: Asscher },
+      { name: "Radiant", img: Radiant },
+      { name: "Marquise", img: Marquise },
+      { name: "Pear", img: Pear },
+      { name: "Heart", img: Heart },
+   ];
 
    const handleChange = (filterName, value) => {
       dispatch({ type: "SET_FILTER", name: filterName, value: value });
@@ -54,9 +75,14 @@ const DiamondCustomizer = ({ onFilter }) => {
                      {types.map((type, index) => (
                         <button
                            key={index}
-                           onClick={() => handleChange("type", type)}
+                           onClick={() => handleChange("type", type.name)}
                         >
-                           {type}
+                           <img
+                              src={type.img}
+                              alt={type.name}
+                              className="type-icon"
+                           />
+                           {type.name}
                         </button>
                      ))}
                   </div>
