@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import Round from "../images/Round.png";
 import Cushion from "../images/Cushion.png";
 import Princess from "../images/Princess.png";
@@ -26,6 +26,8 @@ const filterReducer = (state, action) => {
    switch (action.type) {
       case "SET_FILTER":
          return { ...state, [action.name]: action.value };
+      case "RESET_FILTER":
+         return { ...initialFilterState };
       default:
          return state;
    }
@@ -51,8 +53,16 @@ const DiamondCustomizer = ({ onFilter }) => {
       { name: "Heart", img: Heart },
    ];
 
+   useEffect(() => {
+      onFilter(filters);
+   }, [filters, onFilter]);
+
    const handleChange = (filterName, value) => {
       dispatch({ type: "SET_FILTER", name: filterName, value: value });
+   };
+
+   const resetFilters = () => {
+      dispatch({ type: "RESET_FILTER" });
    };
 
    const toggleFilter = (filterName) => {
@@ -224,7 +234,9 @@ const DiamondCustomizer = ({ onFilter }) => {
                )}
             </div>
          </div>
-         <button onClick={() => onFilter(filters)}>Find My Diamond</button>
+         <div className="buttons">
+            <button onClick={resetFilters}>Reset Filters</button>
+         </div>
       </div>
    );
 };
